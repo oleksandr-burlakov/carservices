@@ -18,8 +18,8 @@ jobs:
         with:
           dotnet-version: 7.0.x
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore ${GITHUB_WORKSPACE}\backend\Carvices.API
       - name: Build
-        run: dotnet build --no-restore backend\Carvices.API
+        run: dotnet build --no-restore ${GITHUB_WORKSPACE}\backend\Carvices.API
       - name: Test
-        run: dotnet test --no-build --verbosity normal backend\Carvices.API
+        run: dotnet test --no-build --verbosity normal ${GITHUB_WORKSPACE}\backend\Carvices.API

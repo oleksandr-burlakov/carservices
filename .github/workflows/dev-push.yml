@@ -19,8 +19,8 @@ jobs:
         with:
           dotnet-version: 7.0.x
       - name: Restore dependencies
-        run: dotnet restore ${{env.working-directory}}\backend\Carvices.API
+        run: dotnet restore ${{env.working-directory}}
       - name: Build
-        run: dotnet build --no-restore ${{env.working-directory}}\backend\Carvices.API
+        run: dotnet build --no-restore ${{env.working-directory}}
       - name: Test
-        run: dotnet test --no-build --verbosity normal ${{env.working-directory}}\backend\Carvices.API
+        run: dotnet test --no-build --verbosity normal ${{env.working-directory}}

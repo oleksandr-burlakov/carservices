@@ -1,5 +1,23 @@
+using Carvices.DAL;
+using Carvices.DAL.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<EFContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("Context")));
+builder.Services.AddIdentity<User, IdentityRole<Guid>>(o =>
+    {
+        o.SignIn.RequireConfirmedAccount = false;
+        o.Password.RequireDigit = false;
+        o.Password.RequiredLength = 6;
+        o.Password.RequireNonAlphanumeric = false;
+        o.Password.RequireUppercase = false;
+        o.Password.RequireLowercase = false;
+    })
+    .AddEntityFrameworkStores<EFContext>();
 // Add services to the container.
 builder.Services.AddRazorPages();
 
@@ -17,7 +35,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();

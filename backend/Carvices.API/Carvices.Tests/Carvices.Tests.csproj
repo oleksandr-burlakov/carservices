@@ -21,4 +21,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Integrational\" />
+    <Folder Include="System\" />
+    <Folder Include="Unit\" />
+  </ItemGroup>
+
 </Project>

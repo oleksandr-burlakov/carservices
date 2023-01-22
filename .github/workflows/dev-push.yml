@@ -10,7 +10,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env:
+      working-directory: ./backend/Carvices.API 
     steps:
       - uses: actions/checkout@v3
       - name: Setup .NET
@@ -18,8 +19,8 @@ jobs:
         with:
           dotnet-version: 7.0.x
       - name: Restore dependencies
-        run: dotnet restore ${GITHUB_WORKSPACE}\backend\Carvices.API
+        run: dotnet restore ${{env.working-directory}}\backend\Carvices.API
       - name: Build
-        run: dotnet build --no-restore ${GITHUB_WORKSPACE}\backend\Carvices.API
+        run: dotnet build --no-restore ${{env.working-directory}}\backend\Carvices.API
       - name: Test
-        run: dotnet test --no-build --verbosity normal ${GITHUB_WORKSPACE}\backend\Carvices.API
+        run: dotnet test --no-build --verbosity normal ${{env.working-directory}}\backend\Carvices.API

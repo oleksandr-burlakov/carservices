@@ -4,7 +4,8 @@
     {
         Broken = 0,
         InService = 1,
-        Fixed = 2
+        Fixed = 2,
+        Idle = 3
     }
     public class Car
     {

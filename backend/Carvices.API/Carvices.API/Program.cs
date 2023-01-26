@@ -1,5 +1,7 @@
+using Carvices.API.Configuration;
 using Carvices.DAL;
 using Carvices.DAL.Entities;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,7 +21,21 @@ builder.Services.AddIdentity<User, IdentityRole<Guid>>(o =>
     })
     .AddEntityFrameworkStores<EFContext>();
 // Add services to the container.
+builder.Services.AddControllers();
 builder.Services.AddRazorPages();
+
+builder.Services.AddRepositories();
+builder.Services.AddServices();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(o =>
+    {
+        o.Events.OnRedirectToLogin = (context) =>
+        {
+            context.Response.StatusCode = 401;
+            return Task.CompletedTask;
+        };
+    });
 
 var app = builder.Build();
 
@@ -35,9 +51,12 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
+app.MapControllers();
+app.UseCors();
 
 app.Run();

@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Carvices.BLL\Carvices.BLL.csproj" />
     <ProjectReference Include="..\Carvices.DAL\Carvices.DAL.csproj" />
   </ItemGroup>
 

@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Carvices.DAL\Carvices.DAL.csproj" />
+  </ItemGroup>
+
 </Project>

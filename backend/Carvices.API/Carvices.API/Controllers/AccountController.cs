@@ -16,12 +16,9 @@ namespace Carvices.API.Controllers
     public class AccountController : ControllerBase
     {
         private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
-        public AccountController(UserManager<User> userManager,
-            SignInManager<User> signInManager)
+        public AccountController(UserManager<User> userManager)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
         }
 
         [HttpPost("register")]
@@ -39,31 +36,11 @@ namespace Carvices.API.Controllers
                 return BadRequest($"User with email '{request.Email}' or username '{request.UserName}' is already registered");
             }
 
-            var user = await _userManager.CreateAsync(new DAL.Entities.User()
+            await _userManager.CreateAsync(new DAL.Entities.User()
             {
                 UserName = request.UserName,
                 Email = request.Email
             }, request.Password);
-
-
-
-            var claims = new List<Claim>
-            {
-                new Claim(type: ClaimTypes.NameIdentifier, value: existedUser.Id.ToString()),
-                new Claim(type: ClaimTypes.Email, value: request.Email),
-                new Claim(type: ClaimTypes.Name, value: request.UserName)
-            };
-            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-            await HttpContext.SignInAsync(
-                CookieAuthenticationDefaults.AuthenticationScheme,
-                new ClaimsPrincipal(identity),
-                new AuthenticationProperties
-                {
-                    IsPersistent = true,
-                    AllowRefresh = true,
-                    ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
-                });
 
             return Ok();
         }
@@ -93,12 +70,12 @@ namespace Carvices.API.Controllers
             var claims = new List<Claim>
             {
                 new Claim(type: ClaimTypes.NameIdentifier, value: existedUser.Id.ToString()),
-                new Claim(type: ClaimTypes.Email, value: existedUser.Email),
-                new Claim(type: ClaimTypes.Name, value: existedUser.UserName)
+                new Claim(type: ClaimTypes.Email, value: existedUser.Email!),
+                new Claim(type: ClaimTypes.Name, value: existedUser.UserName!)
             };
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-            var user = await _userManager.CreateAsync(new DAL.Entities.User()
+            await _userManager.CreateAsync(new DAL.Entities.User()
             {
                 UserName = existedUser.UserName,
                 Email = existedUser.Email
@@ -113,6 +90,33 @@ namespace Carvices.API.Controllers
                     AllowRefresh = true,
                     ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
                 });
+
+            return Ok();
+        }
+
+
+
+        [HttpPost("register-worker")]
+        [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> RegisterWorker(RegisterWorkerRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState.Values.ToString());
+            }
+
+            var existedUser = (await _userManager.FindByEmailAsync(request.Email)) ?? (await _userManager.FindByNameAsync(request.UserName));
+            if (existedUser is not null)
+            {
+                return BadRequest($"User with email '{request.Email}' or username '{request.UserName}' is already registered");
+            }
+
+            await _userManager.CreateAsync(new DAL.Entities.User()
+            {
+                UserName = request.UserName,
+                Email = request.Email,
+                JobId = request.ServiceId,
+            }, request.Password);
 
             return Ok();
         }

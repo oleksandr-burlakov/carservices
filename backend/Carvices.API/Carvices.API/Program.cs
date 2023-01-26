@@ -21,13 +21,11 @@ builder.Services.AddIdentity<User, IdentityRole<Guid>>(o =>
     })
     .AddEntityFrameworkStores<EFContext>();
 // Add services to the container.
-builder.Services.AddControllers();
-builder.Services.AddRazorPages();
-
 builder.Services.AddRepositories();
 builder.Services.AddServices();
 
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+builder.Services
+    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(o =>
     {
         o.Events.OnRedirectToLogin = (context) =>
@@ -36,6 +34,9 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
             return Task.CompletedTask;
         };
     });
+
+builder.Services.AddControllers();
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 

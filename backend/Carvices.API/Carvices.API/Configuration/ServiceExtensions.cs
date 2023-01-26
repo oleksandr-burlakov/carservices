@@ -2,7 +2,6 @@
 using Carvices.BLL.Realization;
 using Carvices.DAL.Interfaces;
 using Carvices.DAL.Realization;
-using Microsoft.Identity.Client;
 
 namespace Carvices.API.Configuration
 {
@@ -12,12 +11,14 @@ namespace Carvices.API.Configuration
         {
             services.AddTransient<ICarRepository, CarRepository>();
             services.AddTransient<IServiceRepository, ServiceRepository>();
+            services.AddTransient<IServiceActionRepository, ServiceActionRepository>();
         }
 
         public static void AddServices(this IServiceCollection services)
         {
             services.AddTransient<ICarService, CarService>();
             services.AddTransient<IServiceService, ServiceService>();
+            services.AddTransient<IServiceActionService, ServiceActionService>();
         }
     }
 }

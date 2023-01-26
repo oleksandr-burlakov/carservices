@@ -27,7 +27,8 @@ namespace Carvices.BLL.Realization
         public async Task<ICollection<GetMyCarsDTO>> GetMyCarsAsync(Guid userId)
         {
             return (await _carRepository.GetByOwnerIdAsync(userId))
-                .Select(c => new GetMyCarsDTO() { 
+                .Select(c => new GetMyCarsDTO()
+                {
                     Id = c.Id,
                     Name = c.Name,
                     CarStatus = c.Status

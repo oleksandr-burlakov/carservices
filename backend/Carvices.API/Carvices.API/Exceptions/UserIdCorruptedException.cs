@@ -1,6 +1,4 @@
-﻿using System.Runtime.Serialization;
-
-namespace Carvices.API.Exceptions
+﻿namespace Carvices.API.Exceptions
 {
     [Serializable]
     internal class UserIdCorruptedException : Exception

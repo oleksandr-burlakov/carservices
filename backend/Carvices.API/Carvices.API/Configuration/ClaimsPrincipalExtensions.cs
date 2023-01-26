@@ -21,7 +21,7 @@ namespace Carvices.API.Configuration
                 throw new UserIdNotFoundException();
             }
             var isParsed = Guid.TryParse(id.Value, out var returnId);
-            
+
             if (!isParsed)
             {
                 throw new UserIdCorruptedException();

@@ -36,5 +36,11 @@ namespace Carvices.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("get-by-service/{serviceId}")]
+        public async Task<IActionResult> GetByService([FromQuery] Guid serviceId)
+        {
+            var result = await _serviceActionService.GetByServiceAsync(serviceId);
+            return Ok(result);
+        }
     }
 }

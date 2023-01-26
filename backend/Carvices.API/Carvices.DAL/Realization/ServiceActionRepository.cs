@@ -1,5 +1,6 @@
 ﻿using Carvices.DAL.Entities;
 using Carvices.DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Carvices.DAL.Realization
 {
@@ -15,6 +16,13 @@ namespace Carvices.DAL.Realization
             var returnServiceAction = await _context.ServiceActions.AddAsync(serviceAction);
             await _context.SaveChangesAsync();
             return returnServiceAction.Entity.Id;
+        }
+
+        public async Task<ICollection<ServiceAction>> GetByServiceIdAsync(Guid serviceId)
+        {
+            return await _context.ServiceActions
+                .Where(sa => sa.ServiceId == serviceId)
+                .ToListAsync();
         }
     }
 }

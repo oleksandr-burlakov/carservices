@@ -1,6 +1,7 @@
 ﻿using Carvices.BLL.DTO.ServiceActions;
 using Carvices.BLL.Interfaces;
 using Carvices.DAL.Interfaces;
+using Microsoft.Identity.Client;
 
 namespace Carvices.BLL.Realization
 {
@@ -22,6 +23,17 @@ namespace Carvices.BLL.Realization
                 Price = dto.Price,
                 ServiceId = dto.ServiceId
             }));
+        }
+
+        public async Task<ICollection<GetServiceActionByServiceDTO>> GetByServiceAsync(Guid serviceId)
+        {
+            return (await _repository.GetByServiceIdAsync(serviceId))
+                .Select(sa => new GetServiceActionByServiceDTO()
+                {
+                    Id= sa.Id,
+                    Name = sa.Name
+                })
+                .ToList();
         }
     }
 }

@@ -10,7 +10,8 @@ namespace Carvices.API.ViewModel.ServiceActions
         public decimal? HourEstimation { get; set; }
         public bool IsFree { get; set; } = true;
         [MaxLength(255)]
-        public string Name { get; set; }
+        [Required]
+        public required string Name { get; set; }
         public string? Description { get; set; }
     }
 }

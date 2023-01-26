@@ -6,7 +6,7 @@
         public decimal? Price { get; set; }
         public decimal? HourEstimation { get; set; }
         public bool IsFree { get; set; }
-        public string Name { get; set; }
+        public required string Name { get; set; }
         public string? Description { get; set; }
     }
 }

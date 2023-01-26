@@ -4,8 +4,8 @@ namespace Carvices.BLL.DTO.Cars
 {
     public class GetMyCarsDTO
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public CarStatus CarStatus { get; set; }
+        public required Guid Id { get; set; }
+        public required string Name { get; set; }
+        public required CarStatus CarStatus { get; set; }
     }
 }

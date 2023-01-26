@@ -6,7 +6,7 @@
         public Guid WorkerId { get; set; }
         public DateTime BeginTime { get; set; }
         public DateTime? EndTime { get; set; }
-        public ServiceAction ServiceAction { get; set; }
-        public User Worker { get; set; }
+        public ServiceAction? ServiceAction { get; set; }
+        public User? Worker { get; set; }
     }
 }

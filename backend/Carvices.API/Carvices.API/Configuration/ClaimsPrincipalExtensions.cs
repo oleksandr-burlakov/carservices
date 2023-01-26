@@ -9,8 +9,17 @@ namespace Carvices.API.Configuration
     {
         public static async Task<User> GetUser(this ClaimsPrincipal principal, UserManager<User> manager)
         {
-            var userName = principal.Identity.Name;
-            return (await manager.FindByNameAsync(userName));
+            var userName = principal.Identity?.Name;
+            if (String.IsNullOrWhiteSpace(userName))
+            {
+                throw new ArgumentNullException($"{nameof(ClaimsPrincipal.Identity)}.{nameof(ClaimsPrincipal.Identity.Name)}");
+            }
+            var user = await manager.FindByNameAsync(userName);
+            if (user is null)
+            {
+                throw new UserNotFoundException();
+            }
+            return user;
         }
 
         public static Guid GetUserId(this ClaimsPrincipal principal)

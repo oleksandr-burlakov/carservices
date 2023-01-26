@@ -1,7 +1,6 @@
 ﻿using Carvices.BLL.DTO.ServiceActions;
 using Carvices.BLL.Interfaces;
 using Carvices.DAL.Interfaces;
-using Microsoft.Identity.Client;
 
 namespace Carvices.BLL.Realization
 {
@@ -30,7 +29,7 @@ namespace Carvices.BLL.Realization
             return (await _repository.GetByServiceIdAsync(serviceId))
                 .Select(sa => new GetServiceActionByServiceDTO()
                 {
-                    Id= sa.Id,
+                    Id = sa.Id,
                     Name = sa.Name
                 })
                 .ToList();

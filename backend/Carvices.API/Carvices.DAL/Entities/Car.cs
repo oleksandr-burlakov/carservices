@@ -10,9 +10,9 @@
     public class Car
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
+        public required string Name { get; set; }
         public Guid OwnerId { get; set; }
         public CarStatus Status { get; set; }
-        public User Owner { get; set; }
+        public User? Owner { get; set; }
     }
 }

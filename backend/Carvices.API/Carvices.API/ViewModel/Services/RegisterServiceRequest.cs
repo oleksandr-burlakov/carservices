@@ -6,7 +6,7 @@ namespace Carvices.API.ViewModel.Services
     {
         [MaxLength(255)]
         [Required]
-        public string Name { get; set; }
+        public required string Name { get; set; }
         public double? Longtitude { get; set; }
         public double? Latitude { get; set; }
     }

@@ -17,6 +17,6 @@
         public DayNumber DayNumber { get; set; }
         public int? FromHour { get; set; }
         public int? ToHour { get; set; }
-        public Service Service { get; set; }
+        public Service? Service { get; set; }
     }
 }

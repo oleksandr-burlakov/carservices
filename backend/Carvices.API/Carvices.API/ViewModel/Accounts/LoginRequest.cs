@@ -1,8 +1,12 @@
-﻿namespace Carvices.API.ViewModel.Accounts
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Carvices.API.ViewModel.Accounts
 {
     public record LoginRequest
     {
-        public string Login { get; set; }
-        public string Password { get; set; }
+        [Required]
+        public required string Login { get; set; }
+        [Required]
+        public required string Password { get; set; }
     }
 }

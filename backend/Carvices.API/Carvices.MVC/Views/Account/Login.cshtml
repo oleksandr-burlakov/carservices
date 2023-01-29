@@ -1,0 +1,50 @@
+﻿@model Carvices.MVC.Models.Account.LoginModel
+@{
+    Layout = "_AnonymousLayout";
+}
+<div class="login-card col-6 col-md-4 mx-auto text-center">
+    <h1 class="h3 mb-1 fw-normal">Welcome</h1>
+    <h1 class="h5 mb-3 fw-normal">Sign in</h1>
+    <form class="mb-4" method="post">
+        <div class="form-floating mb-4">
+            @Html.TextBoxFor(m => m.Login, new {@class=$"form-control {Html.Validate(nameof(Model.Login))}"})
+            @Html.LabelFor(m => m.Login, "Login: ")
+            @Html.ValidationMessageFor(m => m.Login, String.Empty, new { @class = "invalid-feedback"})
+        </div>
+        <div class="form-floating mb-4">
+            @Html.TextBoxFor(m => m.Password, new {type="password", @class=$"form-control {Html.Validate(nameof(Model.Password))}"})
+            @Html.LabelFor(m => m.Password, "Password: ")
+            @Html.ValidationMessageFor(m => m.Password, String.Empty, new { @class="invalid-feedback" }, "span")
+        </div>
+        <button class="w-100 btn btn-lg btn-primary mb-4" id="login-btn" disabled>Login</button>
+        @if (Model != null && !String.IsNullOrWhiteSpace(Model.ErrorMessage))
+        {
+            <span class="text-danger h4">@Model.ErrorMessage</span>    
+        }
+    </form>
+    <p class="h6">
+        New user? 
+        <a href="#">Create account here</a>
+    </p>
+</div>
+@section Scripts {
+    <script>
+        let $username = $('#@nameof(Model.Login)');
+        let $password = $('#@nameof(Model.Password)');
+        let $loginBtn = $('#login-btn');
+        $username.add($password).on('input', function () {
+            $(this).removeClass('is-invalid');
+
+            validateButton($username.val(), $password.val());
+        });
+
+        function validateButton(userName, password) {
+            if (userName && password) {
+                $loginBtn.attr('disabled', false);
+            } else {
+                $loginBtn.attr('disabled', true);
+            }
+        }
+        validateButton($username.val(), $password.val());
+    </script>
+}

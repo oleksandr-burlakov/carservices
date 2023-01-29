@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Carvices.API", "Carvices.API\Carvices.API.csproj", "{F50C5C9E-E53E-4D30-BD81-A00AB27F9E13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Carvices.API", "Carvices.API\Carvices.API.csproj", "{F50C5C9E-E53E-4D30-BD81-A00AB27F9E13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Carvices.BLL", "Carvices.BLL\Carvices.BLL.csproj", "{EFBCB27B-70CE-4E98-B036-5B20DE39E544}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Carvices.BLL", "Carvices.BLL\Carvices.BLL.csproj", "{EFBCB27B-70CE-4E98-B036-5B20DE39E544}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Carvices.DAL", "Carvices.DAL\Carvices.DAL.csproj", "{0C7834AA-2016-48BC-B4CF-C541310A8318}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Carvices.DAL", "Carvices.DAL\Carvices.DAL.csproj", "{0C7834AA-2016-48BC-B4CF-C541310A8318}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Carvices.Tests", "Carvices.Tests\Carvices.Tests.csproj", "{BB34A5CE-B419-4408-9ED5-D1C65BBDB45B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Carvices.Tests", "Carvices.Tests\Carvices.Tests.csproj", "{BB34A5CE-B419-4408-9ED5-D1C65BBDB45B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Carvices.MVC", "Carvices.MVC\Carvices.MVC.csproj", "{77A65C8B-202B-47CB-8975-D3778783DBFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{BB34A5CE-B419-4408-9ED5-D1C65BBDB45B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB34A5CE-B419-4408-9ED5-D1C65BBDB45B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB34A5CE-B419-4408-9ED5-D1C65BBDB45B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77A65C8B-202B-47CB-8975-D3778783DBFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77A65C8B-202B-47CB-8975-D3778783DBFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77A65C8B-202B-47CB-8975-D3778783DBFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77A65C8B-202B-47CB-8975-D3778783DBFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -48,7 +48,7 @@ namespace Carvices.MVC.Controllers
                 return View(model);
             }
 
-            return View();
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }
 }
